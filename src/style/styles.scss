@@ -1,0 +1,27 @@
+@import "reset";
+@import "mixin";
+body {
+  background: antiquewhite;
+}
+
+.card {
+  padding: 10px;
+  list-style-type: none;
+  text-align: center;
+  background: gray;
+  color: white;
+  margin: 10px;
+  line-height: 300px;
+  border-radius: 10px;
+  border: 1px solid gainsboro;
+  box-shadow: 4px 4px 5px 1px grey;
+  cursor: pointer;
+  &--opened {
+    color: gray;
+    background: white;
+  }
+  &__wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+}
