@@ -9,9 +9,9 @@ interface CardsGameInterface {
 export default class CardsGame {
   readonly element: HTMLElement;
   readonly cards: any;
+  readonly onSuccess: () => any;
   openedCards: number[];
-  openedCard: any;
-  onSuccess: () => any;
+  openedCard: number;
   constructor (options: CardsGameInterface) {
     this.onSuccess = options.onSuccess
     /** init cards */
@@ -35,7 +35,7 @@ export default class CardsGame {
     /** render app */
     options.wrapper.appendChild(this.element)
   };
-  checkClickCard (e: any) {
+  private checkClickCard (e: any) {
     // get clicked card index
     const cardIndex = findIndex(this.cards, function (item) {
       return item.element === e.target
@@ -60,7 +60,7 @@ export default class CardsGame {
       this.openedCard = cardIndex
     }
   };
-  checkSameCards (cards: number[]) {
+  private checkSameCards (cards: number[]) {
     if (this.cards[cards[0]].value !== this.cards[cards[1]].value) {
       setTimeout(() => {
         this.toggleCard(cards)
@@ -70,14 +70,14 @@ export default class CardsGame {
       this.checkGameComplete()
     }
   };
-  toggleCard (cards: number[]) {
+  private toggleCard (cards: number[]) {
     cards.forEach(id => {
       if (id >= 0) {
         this.cards[id].toggle()
       }
     })
   };
-  checkGameComplete () {
+  private checkGameComplete () {
     if (this.cards.length === this.openedCards.length) {
       this.onSuccess()
     }
