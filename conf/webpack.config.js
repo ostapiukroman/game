@@ -13,6 +13,15 @@ module.exports = {
     contentBase: resolve('dist'),
     port: 9090
   },
+  resolve: {
+    extensions: [ '.tsx', '.ts', '.js' ],
+    alias: {
+      '@mixins': resolve('src/script/mixins/'),
+      '@games': resolve('src/script/games/'),
+      '@style': resolve('src/style/'),
+      '@': resolve('src/')
+    }
+  },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
@@ -35,9 +44,6 @@ module.exports = {
         ]
       }
     ]
-  },
-  resolve: {
-    extensions: [ '.tsx', '.ts', '.js' ]
   },
   output: {
     filename: 'main.js',
