@@ -1,5 +1,5 @@
 import Card from './card/index'
-import {createElement, findIndex, shuffle} from "../mixins/index";
+import {createElement, findIndex, shuffle} from "@mixins/index";
 interface CardsGameInterface {
   wrapper: HTMLElement,
   values: string[],

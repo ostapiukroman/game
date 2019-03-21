@@ -1,4 +1,4 @@
-import {createElement} from "../../mixins/index";
+import {createElement} from "@mixins/index";
 interface CardNodeOptions {
   [key: string]: string | number
 }

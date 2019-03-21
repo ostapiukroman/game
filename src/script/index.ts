@@ -1,6 +1,6 @@
 // load styles
-import '../style/styles.scss';
-import CardsGame from './CardsGame/index';
+import '@style/styles.scss';
+import CardsGame from '@games/CardsGame';
 
 /**
  * Add or remove load class to/from body
