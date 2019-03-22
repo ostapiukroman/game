@@ -1,0 +1,16 @@
+@import "mixin";
+
+.navigation {
+  &__wrapper {
+
+  }
+  &__item {
+    cursor: pointer;
+    padding: 10px;
+    border-bottom: 1px solid $gray;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+}

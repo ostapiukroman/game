@@ -1,6 +1,8 @@
 // load styles
-import '@style/styles.scss';
-import CardsGame from '@games/CardsGame';
+import '@style/styles.scss'
+import Sidebar from '@modules/sidebar'
+import CardsGame from '@games/CardsGame'
+import conf from '@/conf/games'
 
 /**
  * Add or remove load class to/from body
@@ -13,6 +15,13 @@ function toggleLoad(): boolean {
 /** *********** start launch game ***************************/
 // toggle load
 toggleLoad()
+
+// init page sidebar
+const sidebarNode = document.getElementById('sidebar')
+new Sidebar({
+  el: sidebarNode,
+  items: conf.games
+})
 
 // application wrapper
 const App = document.getElementById('app')

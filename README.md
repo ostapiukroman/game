@@ -1,5 +1,5 @@
 # Game
-Playground for learning TypeScript, Webpack, Less
+Playground for learning TypeScript, Webpack, Sass
 
 ## Install
 * ```git clone 'path'```

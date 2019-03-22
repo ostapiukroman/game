@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const resolve = function (way) {
-  return path.resolve(__dirname, '../', way)
+  return path.resolve(__dirname, '..', way)
 }
 
 module.exports = {
@@ -14,12 +14,13 @@ module.exports = {
     port: 9090
   },
   resolve: {
-    extensions: [ '.tsx', '.ts', '.js' ],
+    extensions: [ '.tsx', '.ts', '.js', '.json' ],
     alias: {
-      '@mixins': resolve('src/script/mixins/'),
-      '@games': resolve('src/script/games/'),
-      '@style': resolve('src/style/'),
-      '@': resolve('src/')
+      '@mixins': resolve('src/script/mixins'),
+      '@modules': resolve('src/script/modules'),
+      '@games': resolve('src/script/games'),
+      '@style': resolve('src/style'),
+      '@': resolve('src')
     }
   },
   plugins: [

@@ -19,7 +19,7 @@ export function createElement(data: createElement): HTMLElement {
   const element = document.createElement(data.tag)
 
   // set attributes
-  Object.keys(data.options).forEach(key => element.setAttribute(key, data.options[key]))
+  Object.keys(data.options || {}).forEach(key => element.setAttribute(key, data.options[key]))
 
   data.child.forEach(el => {
     if (typeof el === "string") {

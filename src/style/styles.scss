@@ -25,3 +25,24 @@ body {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   }
 }
+
+.block {
+  &__wrapper {
+    padding-left: 60px;
+  }
+  &__sidebar {
+    border-right: 1px solid $gray;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: $white;
+    height: 100%;
+    width: 60px;
+
+    &.active {
+      width: 300px;
+    }
+  }
+  &__play-ground {
+  }
+}
