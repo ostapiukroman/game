@@ -10,16 +10,24 @@
 interface elementOptions {
   [key: string]: string
 }
+interface eventListeners {
+  [key: string]: (e: any) => any
+}
 interface createElement {
   tag: string,
+  on?: eventListeners,
   options?: elementOptions,
   child?: Array<HTMLElement | string>
 }
+
 export function createElement(data: createElement): HTMLElement {
   const element = document.createElement(data.tag)
 
   // set attributes
   Object.keys(data.options || {}).forEach(key => element.setAttribute(key, data.options[key]))
+
+  // set listeners
+  Object.keys(data.on || {}).forEach(key => element.addEventListener(key, data.on[key]))
 
   data.child.forEach(el => {
     if (typeof el === "string") {

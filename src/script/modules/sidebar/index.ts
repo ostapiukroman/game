@@ -1,5 +1,7 @@
-import {createElement} from '@mixins'
+import ListItem from './listItem'
 import '@style/sidebar.scss'
+import {createElement} from '@mixins'
+
 interface SidebarItem {
   id: string,
   title: string,
@@ -9,33 +11,35 @@ interface SidebarItem {
 
 interface SidebarOpt {
   el: HTMLElement,
-  items: SidebarItem[]
+  items: SidebarItem[],
+  onOpen: (id: string) => any
+}
+
+interface SidebarListItem {
+  node: HTMLElement
 }
 
 export default class Sidebar {
-  readonly items: HTMLElement[];
+  readonly items: SidebarListItem[];
   readonly wrapper: HTMLElement;
+  toggleItem: (id: string) => any;
   open: boolean = false;
+
   constructor (opt: SidebarOpt) {
     // Init wrapper node
     this.wrapper = opt.el
+    this.toggleItem = opt.onOpen
     // Set sidebar items
     this.items = opt.items.map(function (item) {
-      return createElement({
-        tag: 'li',
-        options: {
-          title: item.description,
-          class: 'navigation__item'
-        },
-        child: [item.title]
-      })
+      return new ListItem(item)
     })
+
     const itemsWrap = createElement({
       tag: 'ul',
       options: {
         class: 'navigation navigation__wrapper'
       },
-      child: this.items
+      child: this.items.map(item => item.node)
     })
     this.wrapper.addEventListener('click', (e) => this.toggleSidebar(e))
     this.wrapper.append(itemsWrap)

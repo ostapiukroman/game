@@ -38,6 +38,7 @@ body {
     background-color: $white;
     height: 100%;
     width: 60px;
+    transition: width .4s;
 
     &.active {
       width: 300px;

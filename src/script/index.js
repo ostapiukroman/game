@@ -8,8 +8,12 @@ import conf from '@/conf/games'
  * Add or remove load class to/from body
  * @return Boolean - status of current process (for more info see classList.toggle() documentation)
  */
-function toggleLoad(): boolean {
+function toggleLoad() {
   return document.body.classList.toggle('load')
+}
+
+function renderGame (id) {
+
 }
 
 /** *********** start launch game ***************************/
@@ -20,7 +24,11 @@ toggleLoad()
 const sidebarNode = document.getElementById('sidebar')
 new Sidebar({
   el: sidebarNode,
-  items: conf.games
+  items: conf.games,
+  onOpen (id) {
+    console.log('open game with id:', id)
+    renderGame(id)
+  }
 })
 
 // application wrapper

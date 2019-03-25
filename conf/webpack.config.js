@@ -7,7 +7,7 @@ const resolve = function (way) {
 
 module.exports = {
   mode: 'development',
-  entry: './src/script/index.ts',
+  entry: './src/script/index.js',
   devtool: 'inline-source-map',
   devServer: {
     contentBase: resolve('dist'),
