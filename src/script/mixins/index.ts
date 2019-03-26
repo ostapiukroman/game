@@ -22,14 +22,12 @@ export function createElement(data: createElement): HTMLElement {
   // set attributes
   Object.keys(data.options || {}).forEach(key => element.setAttribute(key, data.options[key]))
 
-
-  data.child.forEach(el => {
-    if (typeof el === "string") {
-      element.innerText = el
-    } else {
-      element.appendChild(el)
-    }
-  })
+  if (data.child) {
+    data.child.forEach(el => {
+      const node = typeof el === "string" ? document.createTextNode(el) : el
+      element.appendChild(node)
+    })
+  }
 
   return element
 }

@@ -9,8 +9,37 @@
     padding: 10px;
     border-bottom: 1px solid $gray;
 
+    &:hover {
+      background-color: lightblue;
+    }
+
     &:last-child {
       border-bottom: 0;
+    }
+  }
+  &__item-image {
+    max-width: 100%;
+    width: 39px;
+  }
+  &__item-title {
+    display: inline-block;
+    width: 0;
+    transition: opacity .4s;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    opacity: 0;
+    overflow: hidden;
+    line-height: 39px;
+    text-indent: 10px;
+  }
+}
+
+//Styles for opened sidebar
+.block__sidebar.active {
+  .navigation {
+    &__item-title {
+      width: calc(100% - 39px);
+      opacity: 1;
     }
   }
 }

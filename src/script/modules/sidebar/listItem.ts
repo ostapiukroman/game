@@ -22,13 +22,28 @@ export default class ListItem {
   }
 
   private render () {
+    const image = createElement({
+      tag: 'img',
+      options: {
+        alt: this.info.title,
+        src: this.info.icon,
+        class: 'navigation__item-image'
+      }
+    })
+    const title = createElement({
+      tag: 'span',
+      options: {
+        class: 'navigation__item-title'
+      },
+      child: [this.info.title]
+    })
     this.node = createElement({
       tag: 'li',
       options: {
-        title: this.info.description,
+        title: this.info.title,
         class: 'navigation__item'
       },
-      child: [this.info.title]
+      child: [image, title]
     })
     this.setListeners(this.info.on)
   }
