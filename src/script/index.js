@@ -1,7 +1,6 @@
 // load styles
 import '@style/styles.scss'
 import Sidebar from '@modules/sidebar'
-import CardsGame from '@games/CardsGame'
 import conf from '@/conf/games'
 
 /**
@@ -12,8 +11,16 @@ function toggleLoad() {
   return document.body.classList.toggle('load')
 }
 
-function renderGame (id) {
-
+async function renderGame (id) {
+  // application wrapper
+  const App = document.getElementById('play-ground')
+  const gameInfo = conf.games.find(item => item.id === id)
+  const game = await import('@games/' + gameInfo.path + '/index.ts')
+  new game.default({
+    wrapper: App,
+    values: ['one', 'two', 'tree', 'four', 'five'],
+    onSuccess () { }
+  })
 }
 
 /** *********** start launch game ***************************/
@@ -25,20 +32,15 @@ const sidebarNode = document.getElementById('sidebar')
 new Sidebar({
   el: sidebarNode,
   items: conf.games,
-  onOpen (id) {
-    console.log('open game with id:', id)
-    renderGame(id)
+  on: {
+    click (e, id) {
+      e.preventDefault()
+      e.stopPropagation()
+      renderGame(id)
+    }
   }
 })
 
-// application wrapper
-const App = document.getElementById('app')
-
-new CardsGame({
-  wrapper: App,
-  values: ['one', 'two', 'tree', 'four', 'five'],
-  onSuccess () { }
-})
 // toggle load
 toggleLoad()
 /** **************finish launch game *************************/

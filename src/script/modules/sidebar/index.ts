@@ -2,17 +2,20 @@ import ListItem from './listItem'
 import '@style/sidebar.scss'
 import {createElement} from '@mixins'
 
+interface EventCallbacks {
+  [key: string]: EventListener
+}
 interface SidebarItem {
   id: string,
   title: string,
   description: string,
-  icon: string
+  icon: string,
+  on: EventCallbacks
 }
-
 interface SidebarOpt {
   el: HTMLElement,
   items: SidebarItem[],
-  onOpen: (id: string) => any
+  on: EventCallbacks
 }
 
 interface SidebarListItem {
@@ -22,15 +25,15 @@ interface SidebarListItem {
 export default class Sidebar {
   readonly items: SidebarListItem[];
   readonly wrapper: HTMLElement;
-  toggleItem: (id: string) => any;
   open: boolean = false;
 
   constructor (opt: SidebarOpt) {
     // Init wrapper node
     this.wrapper = opt.el
-    this.toggleItem = opt.onOpen
     // Set sidebar items
-    this.items = opt.items.map(function (item) {
+    this.items = opt.items.map(function (item: SidebarItem) {
+      const itemOpt = item
+      itemOpt.on = opt.on
       return new ListItem(item)
     })
 

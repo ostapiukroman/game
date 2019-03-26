@@ -1,9 +1,14 @@
 import {createElement} from '@mixins'
+
+interface EventCallbacks {
+  [key: string]: (e: any, id: string) => any
+}
 interface ListItemOpt {
   id: string,
   title: string,
   description: string,
-  icon: string
+  icon: string,
+  on: EventCallbacks
 }
 
 export default class ListItem {
@@ -16,17 +21,23 @@ export default class ListItem {
     this.render()
   }
 
-  public render () {
+  private render () {
     this.node = createElement({
       tag: 'li',
       options: {
         title: this.info.description,
         class: 'navigation__item'
       },
-      on: {
-        click: (e: any) => this.checkClick(e)
-      },
       child: [this.info.title]
+    })
+    this.setListeners(this.info.on)
+  }
+
+  private setListeners (listeners: EventCallbacks) {
+    Object.keys(listeners || {}).forEach( (key: string) => {
+      this.node.addEventListener(key, (e: any) => {
+        listeners[key](e, this.info.id)
+      })
     })
   }
 

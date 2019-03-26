@@ -45,5 +45,15 @@ body {
     }
   }
   &__play-ground {
+    &:empty {
+      &:after {
+        content: 'Choose your game!';
+        font-size: 40px;
+        font-weight: bold;
+        text-align: center;
+        display: block;
+        margin-top: 15%;
+      }
+    }
   }
 }
