@@ -16,12 +16,12 @@ export default class Card {
   constructor(data: CreateCard) {
     this.active = false
     this.value = data.name
-    this.defaultValue = data.defaultName || 'chose'
+    this.defaultValue = data.defaultName || ''
 
     this.element = createElement({
       tag: data.tagName || 'li',
       options: {
-        class: 'card',
+        class: 'card__wrapper',
         ...data.options
       },
       child: [this.defaultValue]
@@ -29,7 +29,7 @@ export default class Card {
 
   };
   toggle (): void {
-    this.element.classList.toggle('card--opened')
+    this.element.classList.toggle('card__wrapper--opened')
     this.element.innerText = this.active ? this.defaultValue : this.value
     this.active = !this.active
   };

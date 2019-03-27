@@ -1,26 +1,36 @@
 @import "reset";
 @import "mixin";
 body {
-  background: antiquewhite;
+  background: #e8ecef;
 }
 
 .card {
-  padding: 10px;
-  list-style-type: none;
-  text-align: center;
-  background: gray;
-  color: white;
-  margin: 10px;
-  line-height: 300px;
-  border-radius: 10px;
-  border: 1px solid gainsboro;
-  box-shadow: 4px 4px 5px 1px grey;
-  cursor: pointer;
-  &--opened {
-    color: gray;
-    background: white;
-  }
   &__wrapper {
+    padding: 10px;
+    list-style-type: none;
+    text-align: center;
+    background: $lightblue;
+    background-image: $gradientlightblue;
+    color: white;
+    margin: 10px;
+    line-height: 300px;
+    border-radius: 10px;
+    border: 1px solid gainsboro;
+    box-shadow: 4px 4px 5px 1px grey;
+    cursor: pointer;
+    position: relative;
+    &:hover {
+      background-image: $gradientblue;
+    }
+    &--opened {
+      color: gray;
+      background: white;
+      &:hover {
+        background-image: none;
+      }
+    }
+  }
+  &__container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   }

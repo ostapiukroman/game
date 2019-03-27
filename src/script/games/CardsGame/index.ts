@@ -24,7 +24,7 @@ export default class CardsGame {
     this.element = createElement({
       tag: 'ul',
       options: {
-        class: 'card__wrapper'
+        class: 'card__container'
       },
       child: this.cards.map((card: any) => card.element)
     })
