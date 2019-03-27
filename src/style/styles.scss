@@ -5,6 +5,9 @@ body {
 }
 
 .card {
+  &__height {
+    padding-top: 135%;
+  }
   &__wrapper {
     padding: 10px;
     list-style-type: none;
@@ -16,7 +19,7 @@ body {
     line-height: 300px;
     border-radius: 10px;
     border: 1px solid gainsboro;
-    box-shadow: 4px 4px 5px 1px grey;
+    box-shadow: 3px 3px 5px 1px #8080808c;
     cursor: pointer;
     position: relative;
     &:hover {
@@ -32,7 +35,7 @@ body {
   }
   &__container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   }
 }
 

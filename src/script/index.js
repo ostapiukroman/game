@@ -18,7 +18,7 @@ async function renderGame (id) {
   const game = await import('@games/' + gameInfo.path + '/index.ts')
   new game.default({
     wrapper: App,
-    values: ['one', 'two', 'tree', 'four', 'five'],
+    values: ['one', 'two', 'tree', 'four', 'five', 'six'],
     onSuccess () { }
   })
 }
