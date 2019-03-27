@@ -18,6 +18,11 @@ body {
   box-shadow: 3px 3px 5px 1px #8080808c;
   cursor: pointer;
   position: relative;
+  transform: scale(1);
+  &:active {
+    transform: scale(0.97);
+    transition: transform .2s;
+  }
   &:hover {
     background-image: $gradientblue;
   }
