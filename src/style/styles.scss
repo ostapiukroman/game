@@ -5,37 +5,95 @@ body {
 }
 
 .card {
+  padding: 10px;
+  list-style-type: none;
+  text-align: center;
+  background: $lightblue;
+  background-image: $gradientlightblue;
+  color: white;
+  margin: 10px;
+  line-height: 300px;
+  border-radius: 10px;
+  border: 1px solid gainsboro;
+  box-shadow: 3px 3px 5px 1px #8080808c;
+  cursor: pointer;
+  position: relative;
+  &:hover {
+    background-image: $gradientblue;
+  }
+  &--opened {
+    color: gray;
+    background: white;
+    &:hover {
+      background-image: none;
+    }
+  }
+
   &__height {
     padding-top: 135%;
   }
+
   &__wrapper {
-    padding: 10px;
-    list-style-type: none;
-    text-align: center;
-    background: $lightblue;
-    background-image: $gradientlightblue;
-    color: white;
-    margin: 10px;
-    line-height: 300px;
-    border-radius: 10px;
-    border: 1px solid gainsboro;
-    box-shadow: 3px 3px 5px 1px #8080808c;
-    cursor: pointer;
-    position: relative;
-    &:hover {
-      background-image: $gradientblue;
-    }
-    &--opened {
-      color: gray;
-      background: white;
-      &:hover {
-        background-image: none;
-      }
-    }
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
   }
+
   &__container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  }
+
+  &__suit {
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    font-size: 32px;
+    line-height: 40px;
+    max-width: 81px;
+
+    &:last-child {
+      transform: rotate(-180deg);
+      left: auto;
+      right: 0;
+    }
+  }
+
+  &__suit-icon {
+    display: block;
+    background-color: $red;
+    height: 30px;
+    margin: 20px 10px;
+    position: relative;
+    top: 0;
+    transform: rotate(-45deg);
+    width: 30px;
+
+    &:before,
+    &:after {
+      content: "";
+      background-color:  $red;
+      border-radius: 50%;
+      height: 30px;
+      position: absolute;
+      width: 30px;
+    }
+
+    &:before {
+      top: -15px;
+      left: 0;
+    }
+
+    &:after {
+      left: 15px;
+      top: 0;
+    }
   }
 }
 
@@ -52,12 +110,15 @@ body {
     height: 100%;
     width: 60px;
     transition: width .4s;
+    z-index: 2;
 
     &.active {
       width: 300px;
     }
   }
   &__play-ground {
+    position: relative;
+    z-index: 1;
     &:empty {
       &:after {
         content: 'Choose your game!';

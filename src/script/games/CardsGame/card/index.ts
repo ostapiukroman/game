@@ -1,51 +1,74 @@
-import {createElement} from "@mixins/index";
-interface CardNodeOptions {
-  [key: string]: string | number
-}
-interface CreateCard {
-  name: string,
-  defaultName?: string,
-  tagName?: string,
-  options?: CardNodeOptions
+import {createElement} from '@mixins/index.ts';
+interface CardValue {
+  value: string,
+  suit: string
 }
 
 export default class Card {
   /** Data */
-  readonly defaultValue: string
-  readonly element: HTMLElement;
-  readonly value: string;
-  active: boolean;
+  readonly openClass: string = 'card--opened'
+  element: HTMLElement;
 
   /** Constructor */
-  constructor(data: CreateCard) {
-    this.active = false
-    this.value = data.name
-    this.defaultValue = data.defaultName || ''
-
-    this.element = this.render(data)
+  constructor(
+    public data: CardValue,
+    public active: boolean = false,
+    public defaultValue: string = ''
+  ) {
+    this.element = this.renderWrapper()
+    this.render()
   };
+
+  /** Getters */
+  get CardTemplate (): HTMLElement {
+    const icon = createElement({
+      tag: 'span',
+      options: {
+        class: `card__suit-icon card__suit-icon--${this.data.suit}`
+      }
+    })
+    return createElement({
+      tag: 'span',
+      options: {
+        class: `card__suit`
+      },
+      child: [this.data.value, icon]
+    })
+  }
 
   /** Methods */
   toggle (): void {
-    this.element.classList.toggle('card__wrapper--opened')
-    this.element.innerText = this.active ? this.defaultValue : this.value
     this.active = !this.active
+    this.element.classList.toggle(this.openClass)
+    this.clear()
+    this.render()
   };
-  render (data: CreateCard): HTMLElement {
+  clear () {
+    this.element.removeChild(this.element.lastChild)
+  };
+  renderWrapper (): HTMLElement {
     const cardHeight = createElement({
       tag: 'div',
       options: {
         class: 'card__height'
       }
     })
-
     return createElement({
-      tag: data.tagName || 'li',
+      tag: 'li',
       options: {
-        class: 'card__wrapper',
-        ...data.options
+        class: `card ${this.active ? this.openClass : ''}`
       },
-      child: [cardHeight, this.defaultValue]
+      child: [cardHeight]
     })
+  };
+  render (): void {
+    const contentWrapper = createElement({
+      tag: 'div',
+      options: {
+        class: 'card__wrapper'
+      },
+      child: this.active ? [this.CardTemplate, this.CardTemplate] : [this.defaultValue]
+    })
+    this.element.appendChild(contentWrapper)
   }
 }

@@ -1,5 +1,5 @@
 import Card from './card/index'
-import {createElement, findIndex, shuffle} from "@mixins/index";
+import {createElement, findIndex, shuffle} from "@mixins";
 interface CardsGameInterface {
   wrapper: HTMLElement,
   values: string[],
@@ -17,7 +17,7 @@ export default class CardsGame {
     /** init cards */
     this.openedCards = []
     this.cards = shuffle([].concat(options.values, options.values)).map(function (value) {
-      return new Card({name: value})
+      return new Card(value)
     })
 
     /** render wrapper with cards */
@@ -35,10 +35,11 @@ export default class CardsGame {
     /** render app */
     options.wrapper.appendChild(this.element)
   };
+
   private checkClickCard (e: any) {
     // get clicked card index
     const cardIndex = findIndex(this.cards, function (item) {
-      return item.element === e.target
+      return item.element === e.target || item.element.contains(e.target)
     })
     if (cardIndex < 0 || this.openedCards.indexOf(cardIndex) >= 0) return
     // check opened card exist
@@ -60,8 +61,9 @@ export default class CardsGame {
       this.openedCard = cardIndex
     }
   };
+
   private checkSameCards (cards: number[]) {
-    if (this.cards[cards[0]].value !== this.cards[cards[1]].value) {
+    if (this.cards[cards[0]].data.value !== this.cards[cards[1]].data.value || this.cards[cards[0]].data.suit !== this.cards[cards[1]].data.suit) {
       setTimeout(() => {
         this.toggleCard(cards)
       }, 1000)
