@@ -32,7 +32,8 @@ module.exports = {
     new CopyWebpackPlugin([{
       from: resolve('assets'),
       to: resolve('dist'),
-      ignore: ['.*']
+      ignore: ['.*'],
+      force: true
     }])
   ],
   module: {
