@@ -14,6 +14,8 @@ Playground for learning TypeScript, Webpack, Sass
 * *"@"* - root/src/
 * *"@mixins"* - root/src/script/mixins/
 * *"@games"* - root/src/script/games/
+* *"@modules"* - root/src/modules/
+* *"@style"* - root/src/style/
 
 ## TODO
 **[lp] - low priority; [hp] - high priority**
