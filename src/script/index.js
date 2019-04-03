@@ -16,6 +16,8 @@ async function renderGame (id) {
   const App = document.getElementById('play-ground')
   const gameInfo = conf.games.find(item => item.id === id)
   const game = await import('@games/' + gameInfo.path + '/index.ts')
+
+  /** TODO move current options out from renderGame function. Current function should be general for each games */
   new game.default({
     wrapper: App,
     values: [{

@@ -14,3 +14,9 @@ Playground for learning TypeScript, Webpack, Sass
 * *"@"* - root/src/
 * *"@mixins"* - root/src/script/mixins/
 * *"@games"* - root/src/script/games/
+
+## TODO
+**[lp] - low priority; [hp] - high priority**
+* Add functionality for load image for each game locally
+* Move game options out from renderGame function
+* [lp] Card redesign
